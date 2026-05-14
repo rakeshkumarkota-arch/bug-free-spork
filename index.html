@@ -85,6 +85,15 @@
             }
         }
 
+        @keyframes slideCarousel {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
         /* Navigation Bar */
         nav {
             display: flex;
@@ -459,50 +468,74 @@
             margin: 0 auto;
         }
 
-        .features-grid {
+        /* First Feature with 2-column layout */
+        .features-highlighted {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
             max-width: 1200px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        .features-highlighted-content {
+            order: 2;
+        }
+
+        .features-highlighted-illustration {
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            border-radius: 16px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .features-highlighted-content h3 {
+            font-size: 2rem;
+            color: #0a0e27;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .features-highlighted-content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-more-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0066ff;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        .learn-more-link:hover {
+            gap: 0.8rem;
+            color: #0052cc;
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .learn-more-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
         }
 
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #0a0e27;
+        .learn-more-link:hover::after {
+            transform: translateX(4px);
         }
 
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 5rem 5%;
-            background: white;
-        }
-
-        .testimonials-grid {
+        /* Regular Features Grid */
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
@@ -510,41 +543,152 @@
             margin: 0 auto;
         }
 
-        .testimonial-card {
-            background: #f9f9f9;
-            padding: 2rem;
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
             border-radius: 12px;
-            border-left: 4px solid #0066ff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #0066ff;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: #0a0e27;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background pattern */
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .testimonials > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 102, 255, 0.1);
         }
 
         .testimonial-card:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transform: translateY(-4px);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 102, 255, 0.15);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: #0a0e27;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 500;
         }
 
         .stars {
             color: #ffc107;
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .testimonial-text {
             font-style: italic;
             color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: #0a0e27;
-        }
-
-        .testimonial-role {
-            font-size: 0.85rem;
-            color: #999;
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         /* Pricing Section */
@@ -928,6 +1072,24 @@
             .browser-mockup {
                 margin-top: 2rem;
             }
+
+            .features-highlighted {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .features-highlighted-content {
+                order: 1;
+            }
+
+            .features-highlighted-illustration {
+                height: 300px;
+                order: 2;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -977,6 +1139,14 @@
 
             .hero-stats {
                 gap: 1rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -1077,49 +1247,128 @@
             <h2>Powerful Features Built for Growth</h2>
             <p>Everything you need to turn raw data into strategic advantages</p>
         </div>
+
+        <!-- Highlighted First Feature -->
+        <div class="features-highlighted">
+            <div class="features-highlighted-illustration">
+                📊
+            </div>
+            <div class="features-highlighted-content">
+                <h3>Real-Time Analytics</h3>
+                <p>Access live data and monitor KPIs with instant updates. Make decisions based on the most current information available. Watch your metrics change in real-time and respond to market trends instantly.</p>
+                <a href="#" class="learn-more-link">Learn more</a>
+            </div>
+        </div>
+
+        <!-- Regular Features Grid -->
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Real-Time Analytics</h3>
-                <p>Access live data and monitor KPIs with instant updates. Make decisions based on the most current information available.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔧</div>
+                <div class="feature-icon">🔌</div>
                 <h3>Easy Integration</h3>
-                <p>Connect your data sources in minutes. Supports 200+ integrations with popular business tools and platforms.</p>
+                <p>Connect your data sources in minutes. Supports 200+ integrations with popular business tools and platforms. No coding required.</p>
+                <a href="#" class="learn-more-link">Learn more</a>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎯</div>
+                <div class="feature-icon">🎨</div>
                 <h3>Custom Dashboards</h3>
-                <p>Build personalized dashboards without coding. Drag, drop, and customize to match your exact workflow.</p>
+                <p>Build personalized dashboards without coding. Drag, drop, and customize to match your exact workflow and team needs.</p>
+                <a href="#" class="learn-more-link">Learn more</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise Security</h3>
+                <p>Bank-level encryption and compliance with GDPR, SOC 2, and ISO 27001 standards. Your data is always protected.</p>
+                <a href="#" class="learn-more-link">Learn more</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Insights</h3>
+                <p>Let machine learning algorithms discover hidden patterns in your data. Get predictive insights before others do.</p>
+                <a href="#" class="learn-more-link">Learn more</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Advanced Analytics</h3>
+                <p>Deep dive into metrics with advanced filtering, segmentation, and cohort analysis. Uncover actionable insights.</p>
+                <a href="#" class="learn-more-link">Learn more</a>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Team Collaboration</h3>
+                <p>Share insights across teams with role-based access and real-time collaboration features. Everyone stays aligned.</p>
+                <a href="#" class="learn-more-link">Learn more</a>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
-        <div class="section-header">
-            <h2>Loved by Users Worldwide</h2>
-            <p>See what our customers have to say about their experience with DataFlow</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"DataFlow helped us reduce reporting time by 80%. The interface is intuitive and the support team is absolutely fantastic."</p>
-                <div class="testimonial-author">Sarah Johnson</div>
-                <div class="testimonial-role">CEO, TechStartup Inc.</div>
+        <div class="testimonials-container">
+            <div class="section-header">
+                <h2>Loved by Users Worldwide</h2>
+                <p>See what our customers have to say about their experience with DataFlow</p>
             </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"The real-time analytics have been game-changing for our business. We're making smarter decisions faster than ever before."</p>
-                <div class="testimonial-author">Michael Chen</div>
-                <div class="testimonial-role">Product Manager, Growth Co.</div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Best investment we made this year. The ROI was immediate and the team integration was seamless. Highly recommended!"</p>
-                <div class="testimonial-author">Emma Williams</div>
-                <div class="testimonial-role">Finance Director, Enterprise Corp</div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">SJ</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-author">Sarah Johnson</div>
+                            <div class="testimonial-role">CEO, TechStartup Inc.</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"DataFlow helped us reduce reporting time by 80%. The interface is intuitive and the support team is absolutely fantastic. Best decision we made!"</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">MC</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-author">Michael Chen</div>
+                            <div class="testimonial-role">Product Manager, Growth Co.</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The real-time analytics have been game-changing for our business. We're making smarter decisions faster than ever before. Highly recommended!"</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">EW</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-author">Emma Williams</div>
+                            <div class="testimonial-role">Finance Director, Enterprise Corp</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Best investment we made this year. The ROI was immediate and the team integration was seamless. The platform scales beautifully with our needs."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">DK</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-author">David Kumar</div>
+                            <div class="testimonial-role">Analytics Lead, DataCorp</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Exceptional product with outstanding customer service. The customization options are endless and the performance is blazingly fast."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">LM</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-author">Lisa Martinez</div>
+                            <div class="testimonial-role">Operations Manager, StartupX</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Switched from our old tool and haven't looked back. The migration was painless and our team was productive immediately. Simply incredible!"</p>
+                </div>
             </div>
         </div>
     </section>
