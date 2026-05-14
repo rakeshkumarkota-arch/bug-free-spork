@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
@@ -62,7 +66,7 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             font-size: 0.95rem;
@@ -71,6 +75,7 @@
         .nav-cta:hover {
             background: #0052cc;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
         }
 
         /* Hero Section */
@@ -259,12 +264,12 @@
             padding: 2rem;
             border-radius: 12px;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
         }
 
         .feature-icon {
@@ -302,6 +307,12 @@
             padding: 2rem;
             border-radius: 12px;
             border-left: 4px solid #0066ff;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
         }
 
         .stars {
@@ -328,60 +339,331 @@
             color: #999;
         }
 
-        /* Contact Section */
-        .contact {
+        /* Pricing Section */
+        .pricing {
             padding: 5rem 5%;
-            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
-            color: white;
-            text-align: center;
+            background: #fafbff;
         }
 
-        .contact h2 {
-            font-size: 2.5rem;
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: #0066ff;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0066ff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pricing-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0a0e27;
             margin-bottom: 1rem;
         }
 
-        .contact p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-light {
-            background: white;
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
             color: #0066ff;
-            padding: 1rem 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price span {
+            font-size: 1.2rem;
+            color: #999;
+        }
+
+        .pricing-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓ ';
+            color: #0066ff;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-pricing {
+            background: #f0f0f0;
+            color: #333;
+            padding: 0.85rem 1.5rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            width: 100%;
         }
 
-        .btn-light:hover {
+        .pricing-card.featured .btn-pricing {
+            background: #0066ff;
+            color: white;
+        }
+
+        .btn-pricing:hover {
+            transform: translateY(-2px);
+        }
+
+        .pricing-card.featured .btn-pricing:hover {
+            background: #0052cc;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #0a0e27;
+            transition: all 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .faq-question:hover {
             background: #f0f6ff;
-            transform: translateY(-3px);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: #0066ff;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            color: #666;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Email Signup Section */
+        .email-signup {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+            color: white;
+        }
+
+        .email-signup-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .email-signup h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .email-signup p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .email-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.85rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .email-form input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+        }
+
+        .email-form button {
+            padding: 0.85rem 2rem;
+            background: white;
+            color: #0066ff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .email-privacy {
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            opacity: 0.9;
         }
 
         /* Footer */
         footer {
             background: #0a0e27;
             color: white;
-            padding: 3rem 5%;
-            text-align: center;
+            padding: 4rem 5% 2rem;
         }
 
-        footer p {
-            opacity: 0.8;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column a {
+            color: #999;
+            text-decoration: none;
             font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #0066ff;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            background: #0066ff;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
         }
 
         /* Responsive Design */
@@ -405,6 +687,7 @@
 
             .nav-menu {
                 gap: 1.5rem;
+                font-size: 0.85rem;
             }
 
             .social-proof-container {
@@ -424,19 +707,34 @@
                 font-size: 1.8rem;
             }
 
-            .contact h2 {
-                font-size: 1.8rem;
+            .pricing-card.featured {
+                transform: scale(1.02);
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .email-form input,
+            .email-form button {
+                width: 100%;
             }
         }
 
         @media (max-width: 480px) {
             nav {
                 padding: 1rem 3%;
+                flex-wrap: wrap;
+                gap: 1rem;
             }
 
             .nav-menu {
                 gap: 1rem;
-                font-size: 0.85rem;
+                font-size: 0.75rem;
+            }
+
+            .nav-logo {
+                width: 100%;
             }
 
             .hero {
@@ -450,6 +748,18 @@
             .hero-content p {
                 font-size: 0.95rem;
             }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .pricing-price {
+                font-size: 2rem;
+            }
+
+            .email-signup h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -461,7 +771,7 @@
             <li><a href="#features">Features</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#faq">FAQ</a></li>
         </ul>
         <button class="nav-cta">Get Started</button>
     </nav>
@@ -532,21 +842,6 @@
                 <h3>Custom Dashboards</h3>
                 <p>Build personalized dashboards without coding. Drag, drop, and customize to match your exact workflow.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Enterprise Security</h3>
-                <p>Bank-level encryption and compliance with GDPR, SOC 2, and ISO 27001 standards for your peace of mind.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Predictive Insights</h3>
-                <p>AI-powered forecasting helps you anticipate trends and stay ahead of market changes.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👥</div>
-                <h3>Team Collaboration</h3>
-                <p>Share insights across teams with role-based access and real-time collaboration features.</p>
-            </div>
         </div>
     </section>
 
@@ -578,19 +873,244 @@
         </div>
     </section>
 
-    <!-- Contact/CTA Section -->
-    <section class="contact" id="contact">
-        <h2>Ready to Transform Your Data?</h2>
-        <p>Join hundreds of companies that are already making smarter decisions with DataFlow</p>
-        <div class="contact-buttons">
-            <button class="btn-light">Start Your Free Trial</button>
-            <button class="btn-light" style="background: transparent; border: 2px solid white; color: white;">Schedule a Demo</button>
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <h2>Simple, Transparent Pricing</h2>
+            <p>Choose the perfect plan for your business needs</p>
+        </div>
+        <div class="pricing-grid">
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <div class="pricing-name">Free</div>
+                <div class="pricing-price">$0<span>/month</span></div>
+                <p class="pricing-description">Perfect for getting started</p>
+                <ul class="pricing-features">
+                    <li>5 Dashboard Widgets</li>
+                    <li>Basic Analytics</li>
+                    <li>1 User Account</li>
+                    <li>Email Support</li>
+                    <li>Community Access</li>
+                </ul>
+                <button class="btn-pricing">Get Started</button>
+            </div>
+
+            <!-- Pro Plan (Featured) -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-name">Pro</div>
+                <div class="pricing-price">$99<span>/month</span></div>
+                <p class="pricing-description">Best for growing teams</p>
+                <ul class="pricing-features">
+                    <li>Unlimited Dashboards</li>
+                    <li>Advanced Analytics</li>
+                    <li>10 User Accounts</li>
+                    <li>Priority Support</li>
+                    <li>Custom Integrations</li>
+                    <li>Data Exports</li>
+                </ul>
+                <button class="btn-pricing">Start Free Trial</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <div class="pricing-name">Enterprise</div>
+                <div class="pricing-price">Custom<span>/month</span></div>
+                <p class="pricing-description">For large-scale operations</p>
+                <ul class="pricing-features">
+                    <li>Everything in Pro</li>
+                    <li>Unlimited Users</li>
+                    <li>Dedicated Account Manager</li>
+                    <li>24/7 Phone Support</li>
+                    <li>Custom Features</li>
+                    <li>SLA Guarantee</li>
+                </ul>
+                <button class="btn-pricing">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about DataFlow</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What is DataFlow and how does it work?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>DataFlow is a real-time analytics platform that connects to your data sources and provides instant insights. Simply connect your data, create custom dashboards, and start making data-driven decisions. Our platform handles all the complex data processing in the background.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How long does it take to set up DataFlow?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Most users get started with DataFlow in less than 10 minutes. We provide pre-built templates and integrations with popular platforms. For custom setups, our team can assist you through the entire process.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is my data secure with DataFlow?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely. We use bank-level encryption, comply with GDPR, SOC 2, and ISO 27001 standards. Your data is stored in secure, redundant data centers and is never shared with third parties. We perform regular security audits and penetration testing.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Can I cancel my subscription anytime?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, you can cancel your subscription at any time without penalties. No long-term contracts required. If you cancel, you'll have access until the end of your current billing cycle, and you can export all your data.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What support options are available?</span>
+                    <span class="faq-toggle">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>We offer email support for all plans, priority support for Pro plans, and 24/7 phone support for Enterprise customers. We also have comprehensive documentation, video tutorials, and a community forum where users help each other.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup Section -->
+    <section class="email-signup">
+        <div class="email-signup-container">
+            <h2>Ready to Transform Your Data?</h2>
+            <p>Join 500+ companies making smarter decisions with DataFlow. Start your free trial today.</p>
+            <form class="email-form" onsubmit="handleSubmit(event)">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Get Started</button>
+            </form>
+            <p class="email-privacy">✓ No credit card required. Free for 14 days. Unsubscribe anytime.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 DataFlow. All rights reserved. | Privacy Policy | Terms of Service | Contact Us</p>
+        <div class="footer-content">
+            <!-- Product -->
+            <div class="footer-column">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal -->
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Compliance</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect -->
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="footer-socials">
+                    <a href="#" class="social-icon" title="Twitter">𝕏</a>
+                    <a href="#" class="social-icon" title="LinkedIn">in</a>
+                    <a href="#" class="social-icon" title="GitHub">⚙</a>
+                    <a href="#" class="social-icon" title="Facebook">f</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 DataFlow Inc. All rights reserved.</p>
+            <p>Made with ❤️ for data-driven teams worldwide.</p>
+        </div>
     </footer>
+
+    <script>
+        // FAQ Accordion functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close other items
+                faqItems.forEach(other => {
+                    if (other !== item) {
+                        other.classList.remove('active');
+                    }
+                });
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Email form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            alert(`Welcome! We've sent a confirmation to ${email}`);
+            event.target.reset();
+        }
+
+        // Smooth scroll behavior (already in CSS, but backup for older browsers)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const element = document.querySelector(href);
+                    if (element) {
+                        element.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
